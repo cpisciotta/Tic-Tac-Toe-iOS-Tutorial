@@ -4,9 +4,9 @@
 
 An iOS (Swift) tutorial on how to create Tic-Tac-Toe using SwiftUI and MVVM.
 
-<center>
+<p align="center">
     <img src="tic-tac-toe.png" width=50%>
-</center>
+</p>
 
 In this tuturiol, we'll be going over how to program tic-tac-toe. This tutorial assumes that you have a basic understanding of Swift and programming and, as a result, will focus more on the "why?" behind the code rather than the "what?". 
 

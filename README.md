@@ -14,6 +14,37 @@ In this tuturiol, we'll be going over how to program tic-tac-toe. This tutorial 
 
 ### Creating the Player
 
+``` swift
+// Player.swift
+
+import Foundation
+
+/// A struct representing universal player logic in a game.
+struct Player {
+
+    /// The player's first or full name.
+    let name: String
+
+    /// The total points that a player has scored.
+    private(set) var points: Int
+
+    /// Creates a new player for a game.
+    /// - Parameters:
+    ///   - name: The player's first or full name.
+    ///   - points: The points that a player has scored in a game.
+    init(name: String, points: Int = 0) {
+        self.name = name
+        self.points = points
+    }
+
+    /// Adds `numPoints` to the player's total score.
+    /// - Parameter numPoints: The number of points that a player achieves. Default is 1.
+    mutating func addPoints(_ numPoints: Int = 1) {
+        self.points += 1
+    }
+}
+```
+
 ### Creating the Game
 
 ``` swift
@@ -73,6 +104,24 @@ struct Game {
 
 }
 
+```
+
+### Extending Game to Specialize for Tic Tac Toe
+
+``` swift
+import Foundation
+
+/// This extension will provide specific Tic Tac Toe logic which must be determined by a specific player.
+extension Game.PlayerPick {
+
+    /// This variable will indicate the preset marks a player will make for Tic Tac Toe.
+    var mark: String {
+        switch self {
+        case .player2: return "⭕️"
+        case .player1: return "❌"
+        }
+    }
+}
 ```
 
 ## View Model Layer

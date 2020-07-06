@@ -132,6 +132,114 @@ extension Game.PlayerPick {
 
 ### Creating the Tic Tac Toe Board
 
+``` swift
+// TicTacToeBoard.swift
+
+import SwiftUI
+
+// This `Shape` draws a traditional tic-tac-toe board to fill the given CGRect.
+struct TicTacToeBoard: Shape {
+
+    // This function draws a tic-tac-toe board to fill the given CGRect.
+    func path(in rect: CGRect) -> Path {
+
+        // Get the CGPoint values necessary to draw a tic-tac-toe board.
+        // This computes the end-points of the horizontal and vertical lines.
+        let values = BoardValues(rect: rect)
+
+        // Initialize a path to draw a tic-tac-toe board.
+        var path = Path()
+
+        // Draw the upper horizontal line of a tic-tac-toe board.
+        path.move(to: values.leftThirdTop)
+        path.addLine(to: values.rightThirdTop)
+
+        // Draw the lower horizontal line of a tic-tac-toe board.
+        path.move(to: values.leftThirdBottom)
+        path.addLine(to: values.rightThirdBottom)
+
+        // Draw the left vertical line of a tic-tac-toe board.
+        path.move(to: values.topThirdLeft)
+        path.addLine(to: values.bottomThirdLeft)
+
+        // Draw the right vertical line of a tic-tac-toe board.
+        path.move(to: values.topThirdRight)
+        path.addLine(to: values.bottomThirdRight)
+
+        // Return the tic-tac-toe board.
+        return path
+    }
+}
+```
+
+``` swift
+extension TicTacToeBoard {
+
+    /// This struct computes the end points of the vertical and horizontal lines of a traditional tic-tac-toe board.
+    private struct BoardValues {
+
+        /// This CGRect represents the available space to fill a tic-tac-toe board.
+        private let rect: CGRect
+
+        /// This initializer determines CGRect where a tic-tac-toe board will be drawn.
+        init(rect: CGRect) { self.rect = rect }
+
+        /// This factor indicates the spacing of the vertical and horizontal lines for a traditional tic-tac-toe board.
+        private static let factor: CGFloat = 1.0 / 3.0
+
+        /// The top endpoint of the left vertical line.
+        var topThirdLeft: CGPoint {
+            CGPoint(x: rect.maxX * Self.factor,
+                    y: 0.0)
+        }
+
+        /// The top endpoint of the right vertical line.
+        var topThirdRight: CGPoint {
+            CGPoint(x: rect.maxX * 2 * Self.factor,
+                    y: 0.0)
+        }
+
+        /// The bottom endpoint of the left vertical line.
+        var bottomThirdLeft: CGPoint {
+            CGPoint(x: rect.maxX * Self.factor,
+                    y: rect.maxY)
+        }
+
+        /// The bottom endpoint of the right vertical line.
+        var bottomThirdRight: CGPoint {
+            CGPoint(x: rect.maxX * 2 * Self.factor,
+                    y: rect.maxY)
+        }
+
+        /// The left endpoint of the upper horizontal line.
+        var leftThirdTop: CGPoint {
+            CGPoint(x: 0.0,
+                    y: rect.maxY * Self.factor)
+        }
+
+        /// The right endpoint of the upper horizontal line.
+        var rightThirdTop: CGPoint {
+            CGPoint(x: rect.maxX,
+                    y: rect.maxY * Self.factor)
+        }
+
+        /// The left endpoint of the lower horizontal line.
+        var leftThirdBottom: CGPoint {
+            CGPoint(x: 0.0,
+                    y: rect.maxY * 2 * Self.factor)
+        }
+
+        /// The right endpoint of the lower horizontal line.
+        var rightThirdBottom: CGPoint {
+            CGPoint(x: rect.maxX,
+                    y: rect.maxY * 2 * Self.factor)
+        }
+
+    }
+
+}
+```
+
 ### Creating the Tic Tac Toe Cell
 
 ### Creating the Points View

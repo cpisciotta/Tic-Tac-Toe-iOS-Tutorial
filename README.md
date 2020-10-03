@@ -40,7 +40,7 @@ struct Player {
     /// Adds `numPoints` to the player's total score.
     /// - Parameter numPoints: The number of points that a player achieves. Default is 1.
     mutating func addPoints(_ numPoints: Int = 1) {
-        self.points += 1
+        self.points += numPoints
     }
 }
 ```
